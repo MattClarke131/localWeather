@@ -16,3 +16,17 @@ function convertTemp(oldTemp, newScale) {
   }
   return newTemp;
 }
+
+function changeScale() {
+  currentScale = document.getElementById("scale").innerHTML;
+  oldTemp = document.getElementById("temperature").innerHTML;
+  if(currentScale == "C") {
+    var newScale = "F";
+    var newTemp = convertTemp(oldTemp, 'farenheit');
+  } else if (currentScale == "F") {
+    newScale = "C";
+    var newTemp = convertTemp(oldTemp, 'celsius');
+  };
+  document.getElementById("scale").innerHTML = newScale;
+  document.getElementById("temperature").innerHTML = newTemp;
+}
