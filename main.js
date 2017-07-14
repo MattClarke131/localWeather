@@ -3,6 +3,30 @@ Local Weather App
 Written by Matthew Clarke
 */
 
+// Test browser for geolocation support
+if (navigator.geolocation) {
+  console.log("Geolocation is supported for this browser");
+} else {
+  console.log("Geolocation is not supported for this browser")
+};
+
+var latitude;
+var longitude;
+window.onload = function() {
+  var geoSuccess = function(position) {
+    latitude = position.coords.latitude;
+    longitude = position.coords.longitude;
+  };
+  var geoError = function(error) {
+    console.log("Error occured: " + error.code);
+  };
+  var geoOptions = {
+    timeout: 30 * 1000,
+    enableHighAccuracy: false,
+  };
+  navigator.geolocation.getCurrentPosition(geoSuccess, geoError, geoOptions);
+}
+
 function setTemp(newTemp) {
   document.getElementById('temperature').innerHTML = newTemp;
 };
