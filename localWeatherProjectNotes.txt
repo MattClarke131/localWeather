@@ -1,0 +1,13 @@
+Local Weather Project notes
+================================================================================
+
+
+Things I've learned
+================================================================================
+1. Test across different browsers
+  I couldn't get navigator.geolocation to work in my old version of firefox.
+  It worked fine in chrome.
+2. Browsers heavily restrict cross-domain requests.
+  -JSON-P can be used to circumvent this. There are security concerns though.
+  -Cross-Origin Resource Sharing(CORS) is a w3c spec that allows
+    cross domain communication from the browser.
