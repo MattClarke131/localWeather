@@ -1,6 +1,14 @@
 Local Weather Project notes
 ================================================================================
 
+CONTENTS
+I.    Things I've Learned
+II.   SAME ORIGIN POLICY
+III.  JSON-P
+IV.   CORS
+V.    Problem: API is Broken
+VI.   How to use JSON?
+
 
 Things I've learned
 ================================================================================
@@ -8,6 +16,36 @@ Things I've learned
   I couldn't get navigator.geolocation to work in my old version of firefox.
   It worked fine in chrome.
 2. Browsers heavily restrict cross-domain requests.
-  -JSON-P can be used to circumvent this. There are security concerns though.
+  -JSONP can be used to circumvent this. There are security concerns though.
   -Cross-Origin Resource Sharing(CORS) is a w3c spec that allows
     cross domain communication from the browser.
+
+SAME ORIGIN POLICY
+================================================================================
+https://en.wikipedia.org/wiki/Same-origin_policy
+" Under the policy, a web browser permits scripts contained in a first web page
+to access data in a second web page, but only if both web pages have the same
+origin. An origin is defined as a combination of URI scheme, hostname, and port
+number."
+
+JSON-P
+================================================================================
+JSON with Padding
+https://stackoverflow.com/questions/2067472/what-is-jsonp-all-about#2067584
+The <script> tag bypasses the cross domain boundary created by browsers.
+user jvenema recommends using CORS instead, as JSONP has "security implications"
+
+CORS
+================================================================================
+Cross-Origin Resource Sharing
+https://www.html5rocks.com/en/tutorials/cors/
+Chrome, Firefox, Opera, and Safari all use the XMLHttpRequest2 object.
+IE uses the XDomainRequest object
+
+Problem
+================================================================================
+Free Code Camp's API is broken and always returns the same result.
+
+How do I use JSON to turn a string into an object?
+================================================================================
+https://www.w3schools.com/js/js_json_intro.asp
