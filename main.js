@@ -14,6 +14,7 @@ if (navigator.geolocation) {
 var latitude;
 var longitude;
 var weatherInfo;
+var temperature;
 
 window.onload = function() {
   var geoSuccess = function(position) {
@@ -32,10 +33,6 @@ window.onload = function() {
   navigator.geolocation.getCurrentPosition(geoSuccess, geoError, geoOptions);
   xhr.send();
 }
-
-function setTemp(newTemp) {
-  document.getElementById('temperature').innerHTML = newTemp;
-};
 
 // Cross-Origin Resource Sharing
 // https://www.html5rocks.com/en/tutorials/cors/
@@ -70,30 +67,32 @@ xhr.onerror = function() {
 };
 
 function updateWeatherDisplay() {
-  document.getElementById('temperature').innerHTML = weatherInfo.main.temp
+  temperature = Math.round(weatherInfo.main.temp)
+  document.getElementById('temperature').innerHTML = temperature.toString()
 };
 
+function setTemp(newTemp) {
+  document.getElementById('temperature').innerHTML = newTemp;
+};
 
-
-function convertTemp(oldTemp, newScale) {
+function convertTemp(newScale) {
   if (newScale == "celsius") {
-    var newTemp = (5/9)*(oldTemp-32);
+    var newTemp = temperature;
   }
   if (newScale == "farenheit") {
-    var newTemp = (9/5)*oldTemp+32;
+    var newTemp = Math.round((9/5)*temperature+32);
   }
   return newTemp;
 }
 
 function changeScale() {
   currentScale = document.getElementById("scale").innerHTML;
-  oldTemp = document.getElementById("temperature").innerHTML;
   if(currentScale == "C") {
     var newScale = "F";
-    var newTemp = convertTemp(oldTemp, 'farenheit');
+    var newTemp = convertTemp('farenheit');
   } else if (currentScale == "F") {
     newScale = "C";
-    var newTemp = convertTemp(oldTemp, 'celsius');
+    var newTemp = convertTemp('celsius');
   };
   document.getElementById("scale").innerHTML = newScale;
   document.getElementById("temperature").innerHTML = newTemp;
