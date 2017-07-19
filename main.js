@@ -3,6 +3,9 @@ Local Weather App
 Written by Matthew Clarke
 */
 
+// Default
+temperature = 0
+
 // Test browser for geolocation support
 if (navigator.geolocation) {
   console.log("Geolocation is supported for this browser");
@@ -11,17 +14,13 @@ if (navigator.geolocation) {
 };
 
 // Variables
-var latitude;
-var longitude;
-var weatherInfo;
-var temperature;
-
 window.onload = function() {
   var geoSuccess = function(position) {
-    latitude = position.coords.latitude;
+    var latitude = position.coords.latitude;
     latitude = latitude.toString();
-    longitude = position.coords.longitude;
+    var longitude = position.coords.longitude;
     longitude = longitude.toString();
+    makexhr(latitude,longitude);
   };
   var geoError = function(error) {
     console.log("Error occured: " + error.code);
@@ -31,7 +30,6 @@ window.onload = function() {
     enableHighAccuracy: false,
   };
   navigator.geolocation.getCurrentPosition(geoSuccess, geoError, geoOptions);
-  xhr.send();
 }
 
 // Cross-Origin Resource Sharing
@@ -53,22 +51,26 @@ function createCORSRequest(method, url) {
   return xhr;
 }
 
-var xhr = createCORSRequest('GET', 'https://fcc-weather-api.glitch.me/api/current?lat='+latitude+'&lon='+longitude);
-if (!xhr) {
-  throw new Error('CORS not supported');
+function makexhr(latitude,longitude) {
+  var xhr = createCORSRequest('GET', 'https://fcc-weather-api.glitch.me/api/current?lat='+latitude+'&lon='+longitude);
+  if (!xhr) {
+    throw new Error('CORS not supported');
+  }
+  xhr.onload = function() {
+    var responseText = xhr.responseText;
+    weatherInfo = JSON.parse(responseText);
+    updateWeatherDisplay();
+  };
+  xhr.onerror = function() {
+    console.log("Error in CORS Request!");
+  };
+  xhr.send();
 }
-xhr.onload = function() {
-  var responseText = xhr.responseText;
-  weatherInfo = JSON.parse(responseText);
-  updateWeatherDisplay();
-};
-xhr.onerror = function() {
-  console.log("Error in CORS Request!");
-};
 
 function updateWeatherDisplay() {
   temperature = Math.round(weatherInfo.main.temp)
   document.getElementById('temperature').innerHTML = temperature.toString()
+  document.getElementById('weatherIcon').src = weatherInfo.weather[0].icon
 };
 
 function setTemp(newTemp) {
