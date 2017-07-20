@@ -8,15 +8,26 @@ var temperature = 0
 var weatherInfo;
 var currentScale;
 
+window.onload = function() {
+  testGeoSupport();
+}
+
 // Test browser for geolocation support
-if (navigator.geolocation) {
-  console.log("Geolocation is supported for this browser");
-} else {
-  console.log("Geolocation is not supported for this browser")
+testGeoSupport = function() {
+  if (navigator.geolocation) {
+    console.log("Geolocation is supported for this browser");
+    getGeoLocation();
+  } else {
+    console.log("Geolocation is not supported for this browser")
+    document.getElementById("error").innerHTML =
+      "Geolocation is not supported in this browser!";
+    document.getElementById("happening").innerHTML =
+      "Weather isn't happening apparently";
+  };
 };
 
 // Geolocation
-window.onload = function() {
+getGeoLocation = function() {
   var geoSuccess = function(position) {
     var latitude = position.coords.latitude;
     latitude = latitude.toString();
