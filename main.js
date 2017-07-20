@@ -82,10 +82,10 @@ function setTemp(newTemp) {
 };
 
 function convertTemp(newScale) {
-  if (newScale == "celsius") {
+  if (newScale == "C") {
     var newTemp = temperature;
   }
-  if (newScale == "farenheit") {
+  if (newScale == "F") {
     var newTemp = Math.round((9/5)*temperature+32);
   }
   return newTemp;
@@ -95,10 +95,10 @@ function changeScale() {
   currentScale = document.getElementById("scale").innerHTML;
   if(currentScale == "C") {
     var newScale = "F";
-    var newTemp = convertTemp('farenheit');
+    var newTemp = convertTemp('F');
   } else if (currentScale == "F") {
     newScale = "C";
-    var newTemp = convertTemp('celsius');
+    var newTemp = convertTemp('C');
   };
   document.getElementById("scale").innerHTML = newScale;
   setTemp(newTemp);
