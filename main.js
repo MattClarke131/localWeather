@@ -20,7 +20,7 @@ window.onload = function() {
     latitude = latitude.toString();
     var longitude = position.coords.longitude;
     longitude = longitude.toString();
-    makexhr(latitude,longitude);
+    getWeatherInfo(latitude,longitude);
   };
   var geoError = function(error) {
     console.log("Error occured: " + error.code);
@@ -51,7 +51,7 @@ function createCORSRequest(method, url) {
   return xhr;
 }
 
-function makexhr(latitude,longitude) {
+function getWeatherInfo(latitude,longitude) {
   var xhr = createCORSRequest('GET', 'https://fcc-weather-api.glitch.me/api/current?lat='+latitude+'&lon='+longitude);
   if (!xhr) {
     throw new Error('CORS not supported');
