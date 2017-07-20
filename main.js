@@ -4,7 +4,7 @@ Written by Matthew Clarke
 */
 
 // Default
-temperature = 0
+var temperature = 0
 var weatherInfo;
 var currentScale;
 
