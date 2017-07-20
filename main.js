@@ -68,9 +68,10 @@ function makexhr(latitude,longitude) {
 }
 
 function updateWeatherDisplay() {
-  temperature = Math.round(weatherInfo.main.temp)
-  document.getElementById('temperature').innerHTML = temperature.toString()
-  document.getElementById('weatherIcon').src = weatherInfo.weather[0].icon
+  temperature = Math.round(weatherInfo.main.temp);
+  document.getElementById('temperature').innerHTML = temperature.toString();
+  document.getElementById('weatherIcon').src = weatherInfo.weather[0].icon;
+  document.getElementById('weatherDisplay').removeAttribute('hidden');
 };
 
 function setTemp(newTemp) {

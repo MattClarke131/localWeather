@@ -34,6 +34,7 @@ JSON with Padding
 https://stackoverflow.com/questions/2067472/what-is-jsonp-all-about#2067584
 The <script> tag bypasses the cross domain boundary created by browsers.
 user jvenema recommends using CORS instead, as JSONP has "security implications"
+"security implications" is "array magic".
 
 CORS
 ================================================================================

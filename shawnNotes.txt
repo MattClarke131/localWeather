@@ -1,0 +1,19 @@
+Shawn's Code Review of localWeather
+================================================================================
+1. Maybe hide the change scale button until weather info has returned.
+  1.1. Another option: Have scale be checked when weather is first loaded.
+    Maybe updateWeatherDisplay should care about the scale.
+2. Make makexhr would be better named getWeather or something
+3. Give user on page feedback when geolocation fails.
+4. Replace empty temperature with something else when user rejects geolocation.
+5. Change //Variables comment
+6. multiple functions set the temperature. Have them all call setTemp();
+7. Use consistent variable names. e.g. Only C and F, change celsius and
+    farenheit
+8. In convertTemp, I should move the newTemp declaration outside of the if
+    statement. In other languages, that var would be accessible only within that
+    if statement. Javascript uses "Hoisting" so it works here.
+9. Declare weatherInfo and currentScale globally.
+10. temperature should be declared "var temperature"
+11. Look up "use strict" for javascript
+12. if geolocation does not work in a browser, the call to it will still occur
