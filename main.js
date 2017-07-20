@@ -93,8 +93,9 @@ function convertTemp(newScale) {
 
 function changeScale() {
   currentScale = document.getElementById("scale").innerHTML;
+  var newScale;
   if(currentScale == "C") {
-    var newScale = "F";
+    newScale = "F";
     var newTemp = convertTemp('F');
   } else if (currentScale == "F") {
     newScale = "C";
