@@ -5,6 +5,8 @@ Written by Matthew Clarke
 
 // Default
 temperature = 0
+var weatherInfo;
+var currentScale;
 
 // Test browser for geolocation support
 if (navigator.geolocation) {
