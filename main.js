@@ -13,7 +13,7 @@ if (navigator.geolocation) {
   console.log("Geolocation is not supported for this browser")
 };
 
-// Variables
+// Geolocation
 window.onload = function() {
   var geoSuccess = function(position) {
     var latitude = position.coords.latitude;
