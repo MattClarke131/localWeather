@@ -71,8 +71,8 @@ function getWeatherInfo(latitude,longitude) {
 }
 
 function updateWeatherDisplay() {
-  temperature = Math.round(weatherInfo.main.temp);
-  document.getElementById('temperature').innerHTML = temperature.toString();
+  temperature = Math.round(weatherInfo.main.temp).toString();
+  setTemp(temperature);
   document.getElementById('weatherIcon').src = weatherInfo.weather[0].icon;
   document.getElementById('weatherDisplay').removeAttribute('hidden');
 };
@@ -101,5 +101,5 @@ function changeScale() {
     var newTemp = convertTemp('celsius');
   };
   document.getElementById("scale").innerHTML = newScale;
-  document.getElementById("temperature").innerHTML = newTemp;
+  setTemp(newTemp);
 }
