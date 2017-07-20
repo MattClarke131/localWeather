@@ -23,7 +23,10 @@ window.onload = function() {
     getWeatherInfo(latitude,longitude);
   };
   var geoError = function(error) {
-    console.log("Error occured: " + error.code);
+    console.log("Geolocation error occured: " + error.code);
+    document.getElementById("error").innerHTML = "Geolocation failed!";
+    document.getElementById("happening").innerHTML =
+      "Weather isn't happening apparently";
   };
   var geoOptions = {
     timeout: 30 * 1000,
